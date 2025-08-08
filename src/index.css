@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+}
