@@ -1,6 +1,0 @@
-CREATE DATABASE todo_list;
-
-CREATE TABLE todo(
-    id SERIAL PRIMARY KEY,
-    task VARCHAR(255)
-)

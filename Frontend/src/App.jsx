@@ -3,13 +3,15 @@ import { FaTrashCan, FaCheck, FaXmark } from "react-icons/fa6";
 import { useState, useRef } from "react";
 import { motion } from 'framer-motion';
 
+import Confirmation from "./Components/confirmation";
+
 export default function TodoList() {
     const [tasks, setTasks] = useState([]);
     const [taskInput, setTaskInput] = useState("");
     const [editingIndex, setEditingIndex] = useState(null);
     const [textValue, setTextValue] = useState("");
     const [finishedTasks, setFinishedTasks] = useState(new Set());
-    // const [confirmation, setConfirmation] = useState(false);
+    const [confirmation, setConfirmation] = useState(false);
 
     const inputRef = useRef(null);
 
@@ -73,24 +75,14 @@ export default function TodoList() {
 
     return (
         <div className='bg-gray-900 w-screen h-screen flex flex-col justify-center items-center'>
-            <h1 className="absolute top-5 left-5 text-white text-4xl font-bold">To-Do List</h1>
+            {/* <h1 className="absolute top-5 left-5 text-white text-4xl font-bold">To-Do List</h1>
 
             <div className="w-[950px] h-[800px] gap-3 flex flex-col items-center overflow-y-auto p-1 no-scroll">
                 {tasks.map((item, index) => (
                     <div className="flex items-center gap-2" key={index}>
-                        {/* {confirmation && (
-                            <div className="fixed inset-0 bg-[#000000de] flex justify-center items-center z-100">
-                                <div className="w-[800px] h-[800px] bg-gray-800 flex flex-col justify-center items-center rounded-2xl">
-                                    <h1 className="text-white text-4xl">Are you sure you want to delete this task?</h1>
-
-                                    <div className="mt-[50px]">
-                                        <button onClick={() => deleteTask(index)} className="text-white transition-all duration-100 ease-linear bg-gray-700 w-[200px] h-[50px] rounded-[10px] mr-3 shadow-[0_0_5px_2px_#00000083] hover:bg-green-900 hover:scale-105">Yes</button>
-                                        <button onClick={() => setConfirmation(false)} className="text-white transition-all duration-100 ease-linear bg-gray-700 w-[200px] h-[50px] rounded-[10px] shadow-[0_0_5px_2px_#00000083] hover:bg-red-900 hover:scale-105">No</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        )} */}
+                        {confirmation && (
+                            <Confirmation />
+                        )}
 
                         <button
                             onClick={() => toggleFinish(index)}
@@ -156,7 +148,7 @@ export default function TodoList() {
                                 </motion.button>
 
                                 <motion.button
-                                    onClick={() => deleteTask(index)} //setConfirmation(true)
+                                    onClick={() => setConfirmation(true)} 
                                     whileTap={{ scale: 0.7 }}
                                     transition={{ type: 'spring', stiffness: 600, damping: 50 }}
                                     className="bg-gray-700 h-[50px] w-[50px] rounded-2xl text-2xl flex justify-center items-center transition-all duration-40 ease-in-out hover:bg-gray-800 hover:scale-105 text-white"
@@ -184,7 +176,9 @@ export default function TodoList() {
                 >
                     <FaCheck />
                 </button>
-            </div>
+            </div> */}
+
+            <Confirmation />
         </div>
     );
 }
