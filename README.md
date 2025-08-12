@@ -5,7 +5,7 @@
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql&logoColor=white)
 
 A simple **To-Do List** application built using the **PERN Stack: PostgreSQL, Express, ReactJS, and Node.js**.  
-This project is a hands-on way to explore CRUD operations with a real database.
+This project provides a hands-on approach to exploring CRUD operations with a real database.
 
 ---
 
@@ -32,7 +32,7 @@ This project is a hands-on way to explore CRUD operations with a real database.
 git clone https://github.com/JuisLionel/login.git
 ```
 
-## 2️⃣ Frontend Setup
+## 2️⃣ Frontend Set up
 
 1. Navigate to the frontend folder:
     ```bash
@@ -49,7 +49,7 @@ git clone https://github.com/JuisLionel/login.git
     npm run dev
     ```
 
-## 3️⃣ Backend Setup
+## 3️⃣ Backend Set up
 
 1. Navigate to the Backend folder:
     ```bash
@@ -61,7 +61,7 @@ git clone https://github.com/JuisLionel/login.git
     npm install
     ```
 
-3. Setup the env file
+3. Set up the env file
       ```bash
     PG_USER = PostgreSQL_Username
     PG_HOST = localhost
@@ -70,7 +70,7 @@ git clone https://github.com/JuisLionel/login.git
     PG_PORT = PostgreSQL_Port
     ```
 
-4. Setup the PostgresSQL table 
+4. Set up the PostgreSQL table 
       ```bash
       CREATE TABLE client_tb (
         index SERIAL PRIMARY KEY,
@@ -89,17 +89,11 @@ git clone https://github.com/JuisLionel/login.git
 
 ## 📸 Preview — Todo_list
 
-<br />
-
-<img src="./picture/preview1.png" alt="Login page preview">
-
-<br />
-
-<img src="./picture/preview2.png" alt="Login page preview">
+<img src="./Picture/preview2.png" alt="Login page preview">
 
 
 ## Note
 
-1. To Mark tasks as complete/incomplete you must double click the task
+1. To Mark tasks as complete/incomplete, you must double-click the task
 
-2. If you want to exit edit you can press esc
+2. If you want to exit edit, you can press Esc
