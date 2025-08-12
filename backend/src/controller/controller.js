@@ -55,3 +55,17 @@ export const deleteClient = async (req, res) => {
         res.status(500).json({ error: 'Failed to Update data' });
     }
 }
+
+export const deleteAllClients = async (req, res) => {
+    try {
+        const deleted = await Services.deleteAllData();
+        
+        if (!deleted) {
+            return res.status(400).json({ error: "No tasks found to delete" });
+        }
+        res.status(200).json({ message: "All tasks deleted" });
+    } catch (err) {
+        console.error("Error deleting all tasks:", err);
+        res.status(500).json({ error: "Failed to delete all tasks" });
+    }
+};
