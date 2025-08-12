@@ -14,11 +14,11 @@ function App() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const [editingIndex, setEditingIndex] = useState(null); // array index for editing
+  const [editingIndex, setEditingIndex] = useState(null);
   const [textValue, setTextValue] = useState("");
 
   const [confirmation, setConfirmation] = useState(false);
-  const [deleteIndex, setDeleteIndex] = useState(null); // id (task.index from db) or null for "clear all"
+  const [deleteIndex, setDeleteIndex] = useState(null);
 
   const inputRef = useRef(null);
   const clickTimeout = useRef(null);
@@ -28,9 +28,6 @@ function App() {
     baseURL: "http://localhost:9000/api",
     timeout: 10000,
   });
-
-  // find array index by DB id
-  const findArrayIndexById = (id) => tasks.findIndex((t) => t.index === id);
 
   // --- Fetch tasks on mount ---
   useEffect(() => {
@@ -160,18 +157,15 @@ function App() {
     }
   };
 
-  // --- Click handling to separate single vs double click ---
   const handleSingleClick = (arrIndex) => {
-    // schedule single-click action (edit) after small delay
     clearTimeout(clickTimeout.current);
+
     clickTimeout.current = setTimeout(() => {
-      // don't start editing if already editing that item
       if (editingIndex !== arrIndex) startEditing(arrIndex);
-    }, 200); // 200ms threshold — tweak if you want
+    }, 200);
   };
 
   const handleDoubleClick = (arrIndex) => {
-    // cancel pending single click and do double-click action
     clearTimeout(clickTimeout.current);
     toggleFinish(arrIndex);
   };
@@ -209,6 +203,7 @@ function App() {
         <div className="overflow-y-auto w-full h-[65%] mt-5 mb-5 no-scroll">
           {tasks.map((item, arrIndex) => (
             <div className="flex items-center gap-2 mb-[11px] group relative" key={item.index}>
+
               {/* Confirmation modal for single delete */}
               {confirmation && deleteIndex === item.index && (
                 <Confirmation
@@ -219,9 +214,8 @@ function App() {
               )}
 
               <div
-                className={`h-[50px] font-bold ${
-                  editingIndex === arrIndex ? "bg-gray-400 border border-gray-600" : "bg-gray-200 group-hover:w-[400px]"
-                } p-2 rounded flex items-center transition-all duration-200 w-full`}
+                className={`h-[50px] font-bold ${editingIndex === arrIndex ? "bg-gray-400 border border-gray-600" : "bg-gray-200 group-hover:w-[400px]"
+                  } p-2 rounded flex items-center transition-all duration-200 w-full`}
               >
                 {editingIndex === arrIndex ? (
                   <input
@@ -251,16 +245,15 @@ function App() {
               <motion.button
                 whileTap={{ scale: 0.7 }}
                 onClick={() => {
-                  setDeleteIndex(item.index); // DB id
+                  setDeleteIndex(item.index); 
                   setConfirmation(true);
                 }}
                 transition={{ type: "spring", stiffness: 600, damping: 50 }}
                 className={`absolute right-1 w-[50px] h-[50px] rounded bg-red-600 flex justify-center items-center text-white text-3xl transition-all duration-500
-                    ${
-                      editingIndex === arrIndex
-                        ? "opacity-0 invisible pointer-events-none"
-                        : "opacity-0 invisible pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 group-hover:visible"
-                    }`}
+                    ${editingIndex === arrIndex
+                    ? "opacity-0 invisible pointer-events-none"
+                    : "opacity-0 invisible pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100 group-hover:visible"
+                  }`}
               >
                 <FaTrashCan />
               </motion.button>
@@ -274,7 +267,7 @@ function App() {
           <button
             onClick={() => {
               if (tasks.length === 0) return;
-              setDeleteIndex(null); // signal for "clear all"
+              setDeleteIndex(null); 
               setConfirmation(true);
             }}
             className="w-[150px] h-[50px] hover:bg-purple-800 hover:scale-105 transition-all duration-150 ease-in-out bg-purple-700 rounded text-white flex items-center justify-center"
@@ -282,8 +275,7 @@ function App() {
             Clear All Task
           </button>
         </div>
-
-        {/* Confirmation modal for Clear All */}
+        
         {confirmation && deleteIndex === null && (
           <Confirmation deleteTask={clearAllTasks} setConfirmation={setConfirmation} index={null} />
         )}
